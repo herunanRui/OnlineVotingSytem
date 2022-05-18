@@ -1,0 +1,68 @@
+body{
+    background-image: url('ph flag.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    }
+.form
+   {
+    background-color: white;
+    opacity:.8;
+    align: center;
+    background-size: cover;
+    width:40%;
+    padding: 40px;
+    margin: 100px auto;
+   }
+.list
+   {
+    width: 1000px;
+    margin: 0 auto;
+   }
+.list ul
+   {
+    list-style:none;
+    margin-top: 2%;
+   }
+.list ul li
+   {
+    background; #80ffff;
+    width: 170 px;
+    border: 1px solid black;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+    color: #fff;
+    font-size: 10px;
+    position:relative;
+    font-family: algerian;
+   }
+h1{
+   color: #66ffff;
+   font-family: algerian;
+   text-align: center;
+  }
+h2 {
+   color: blue;
+   font-family: algerian;
+   text-align: center;
+  }
+p{
+  color: #4700b3;
+  font-family: algerian;
+  border: 2px solid powderblue;
+  padding: 30px;
+  text-align: center;
+  }
+h3{
+   color: powderblack;
+   font-family: algerian;
+   text-align: center;
+   margin:50px;
+  }
+con 
+  {
+   align:center;
+  }
+	

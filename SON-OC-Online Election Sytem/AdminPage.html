@@ -1,0 +1,111 @@
+<?php
+require 'config.php';
+session_start();
+if(!empty($_SESSION["id"])){
+   header("location:login.php");  
+      die();  
+}
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    <style>
+        body{
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+        }
+        main{
+          margin: 5vh 15%;
+        }
+        h1{
+          font-size: 40px;
+          font-weight: 400;
+          text-align: center;
+        }
+        img{
+          width:50%;
+          height:auto;
+        }
+        p{
+          text-align: justify;
+          font-size: 18px;
+        }
+        label{
+            position: absolute;
+            width: 45px;
+            height: 22px;
+            right: 20px;
+            top: 20px;
+            border: 2px solid;
+            border-radius: 20px;
+        }
+        label:before{
+            position: absolute;
+            content: '';
+            width:20px;
+            height: 20px;
+            left: 1px;
+            top: 1px;
+            border-radius: 50%;
+            background: #000;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        label.active:before{
+            left: 24px;
+            background: #fff;
+        }
+        body.night{
+            background: #000;
+            color: #fff;
+        }
+        @media screen and (min-width:900px) {
+          .respon{
+            display: flex;
+          }
+          img{
+            height:50%;
+            width:auto;
+            padding-top: 3vh;
+            padding-right: 5%;
+          }
+          p{
+            max-width: 80%;
+            line-height: 30px;
+          }
+        }
+    </style>
+</head>
+<body>
+  <header>
+  <hr>
+    <label  id="dark-change"></label>
+  </header>
+  
+  <button align= "right" onclick="logout.php">
+  <input name="submit2" type="submit" id="submit2" value="log out" style="background-color: #0070B3 ; color: white; border-radius: 8px;
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+  </button>
+  
+  <main>
+	
+      <h1>Admin <?php echo $_SESSION['name']; ?></h1>
+	  <hr>
+	  
+      <div class="respon">
+        <img src="admin.png">
+        <p>Light-on-dark color scheme, also called dark mode, dark theme or night mode, is a color scheme that uses light-colored text, icons, and graphical user interface elements on a dark background and is often discussed in terms of computer user interface design and web design.</p>
+      </div>
+  </main>
+    <script>
+        var content = document.getElementsByTagName('body')[0];
+        var darkMode = document.getElementById('dark-change');
+        darkMode.addEventListener('click', function(){
+            darkMode.classList.toggle('active');
+            content.classList.toggle('night');
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<?php 
+require 'config.php';
+session_start();
+
+if (!isset($_SESSION['V_uname'])) {
+    header("Location: index.php");
+}
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body{
+       background-image: url('ph flag.jpg');
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: 100% 100%;
+	  }
+  .row{
+       background-color: #D0E9F8;
+	   opacity: 0.75;
+	  }
+  h2{
+     text-align: right;
+	}
+  h1{
+     font-family: algerian;
+	}
+  h3{
+     text-align:center;
+	}
+  .aLog, .vLog{
+    opacity: 0.75;
+    background-color: #D0E9F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	}
+  .modal-body, .modal-title, .modal-footer, .modal-header{
+  background-color: #E5E8E8;
+	}
+	h4{
+	text-align: center;
+	font-family: "Lucida Console", "Courier New", monospace;
+	}
+	 background-color: green; 
+     border: none;
+     color: white;
+     padding: 15px 32px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+	 }
+  </style>
+</head>
+<body> 
+<br>
+<form align="right" name="form1" method="post" action="logout.php">
+  <label class="logoutLblPos">
+  <input name="submit2" type="submit" id="submit2" value="log out" style="background-color: #0070B3 ; color: white" >
+  </label>
+</form>
+
+<div name="user" style="text-align:center">
+  <p style="text-align:center;"><img src="user.png" alt="user" class="userIcon" height="100px" width="150px"></p>
+  <h1 style="color: white"> Welcome <?php echo '$row['admin_id'];' ?></h1>
+  <p style="color: white">2021 Philippines election</p> 
+</div>
+
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#votersModal" style="padding: 3px 25px; border-radius: 8px;  margin: 1px 10px;">
+   <h5>Vote</h5>
+   </button>
+   
+   
+   
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adminModal" style="padding: 3px 20px; border-radius: 8px;  margin: 1px 2px;">
+	  <h5>Message</h5>
+      </button>
+  
+<hr>
+  
+
+<br>
+<br>
+<!-- Modal for the voters -->
+<div class="modal fade" id="votersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">2020 election</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  
+      <div class="modal-body">
+	  <form method="post" action="vote.php">
+      
+	   <p style="text-align:center;">click the radio button of your desired candidates</p>
+       <label><h4>Presidential cadidates: </h4></label>
+	   <p>
+       <input type="radio" name="pres" value="cadidate1" required>cadidate1 
+	   <input type="radio" name="pres" value="cadidate2" required>cadidate2
+	   <input type="radio" name="pres" value="cadidate3" required>cadidate3
+	   <input type="radio" name="pres" value="cadidate4" required>cadidate4
+	   <input type="radio" name="pres" value="cadidate5" required>cadidate5
+	   <input type="radio" name="pres" value="cadidate6" required>cadidate6
+	   </p>
+	   <hr>
+       <br>
+	   
+	     <label><h4>Vice-Presidential cadidates: </h4></label>
+	   <p>
+       <input type="radio" name="Vpres" value="cadidate1" required>cadidate1 
+	   <input type="radio" name="Vpres" value="cadidate2" required>cadidate2
+	   <input type="radio" name="Vpres" value="cadidate3" required>cadidate3
+	   <input type="radio" name="Vpres" value="cadidate4" required>cadidate4
+	   <input type="radio" name="Vpres" value="cadidate5" required>cadidate5
+	   <input type="radio" name="Vpres" value="cadidate6" required>cadidate6
+	   </p>
+	   <hr>
+       <br>
+	   
+	   <label><h4>senatorial cadidates: </h4></label>
+	   <p>
+       <input type="radio" name="sen" value="cadidate1" required>cadidate1 
+	   <input type="radio" name="sen" value="cadidate2" required>cadidate2
+	   <input type="radio" name="sen" value="cadidate3" required>cadidate3
+	   <input type="radio" name="sen" value="cadidate4" required>cadidate4
+	   <input type="radio" name="sen" value="cadidate5" required>cadidate5
+	   <input type="radio" name="sen" value="cadidate6" required>cadidate6
+	   </p>
+	   <hr>
+       <br>
+	   
+	   <label><h4>Partylist: </h4></label>
+	   <p>
+       <input type="radio" name="party" value="cadidate1" required>cadidate1 
+	   <input type="radio" name="party" value="cadidate2" required>cadidate2
+	   <input type="radio" name="party" value="cadidate3" required>cadidate3
+	   <input type="radio" name="party" value="cadidate4" required>cadidate4
+	   <input type="radio" name="party" value="cadidate5" required>cadidate5
+	   <input type="radio" name="party" value="cadidate6" required>cadidate6
+	   </p>
+	   <hr>
+       <br>
+	   
+      </div>
+	  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" name="V_login" value="submit">Submit</button>
+		
+	  </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for the admin -->
+<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Message</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  
+      <div class="modal-body">
+	  <form method="post" action="message.php">
+      
+       <label><h4>Subject: </h4></label>
+       <input type="text" id="subj" name="subj" required/>
+       <br>
+	   
+       <label><h4>Message: </h4></label>
+       <input type="message" id="mess" name="message" required/>
+       <br>
+      </div>
+	  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" value="submit" name="A_login">Send</button>
+		
+	  </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Index</title>
+<title>Index</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,7 +15,9 @@
        background-size: 100% 100%;
 	  }
   .row{
+       opacity:.85;
        background-color: #F4F6F6;
+	   border-radius: 20px;
 	  }
   h2{
      text-align: right;
@@ -25,6 +27,7 @@
 	}
   h3{
      text-align:center;
+	 font-family: Times New Roman;
 	}
   .aLog, .vLog{
     display: flex;
@@ -36,7 +39,8 @@
 	}
 	h4{
 	text-align: center;
-	font-family: algerian;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
 	}
   </style>
 </head>
@@ -50,18 +54,21 @@
   <h4>NoobMatic is an Online voting system service that builds a strong security with fair result.</h4>
   <h4>Ensure that your company elections are well and efficiently managed. Switch to online voting</h4>
   <h4>and reduce the costs of managing your next election. </h4>
+  <br>
+  <p style="text-align:center;">for more information regarding to our service please click here <a href="noobmatic.html">noobmatic.corp<a></p>
   
 <div class="container">
 <br>
   <div class="row">
     <div class="col-sm-6">
-      <h3>Admin</h3>
-      <p>For admin and maintenance workers only</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3 style="color: black">Admin</h3>
+      <h4 style="color: black">For admin and maintenance workers only</h4>
 	  <br>
-	  
+	  <br>
+      <h4 style="color: black">Click the button below to login</h4>
+	  <br>
 	  <div class="aLog">
-	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adminModal">
+	  <button type="button" style="width: 70px; border-radius:10px;" class="btn btn-primary" data-toggle="modal" data-target="#adminModal">
 	  <h5>Login</h5>
       </button>
 	  </div>
@@ -70,13 +77,13 @@
     </div>
 	
     <div class="col-sm-6">
-      <h3>Vote</h3>
-      <p>Click the vote to login and vote</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <h3 style="color: black">Voter</h3>
+      <h4 style="color: black">NoobMatic is an online voting system used to gather instant, trustworthy results. Our voting software and services help you run secure votes and elections.</h4>
+      <h4 style="color: black">Click the button below to login and vote</h4>
 	  <br>
 	  
 	  <div class="vLog">
-	  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#votersModal">
+	  <button type="button" style="width: 70px; border-radius:10px;" class="btn btn-primary" data-toggle="modal" data-target="#votersModal">
 	  <h5>Login</h5>
       </button>
 	  </div>
@@ -87,30 +94,6 @@
 </div>
 <br>
 <br>
-<?php
-
-include_once ('config.php');
-
-if(isset($_POST['V_uname'])){
-    
-    $uname=$_POST['V_uname'];
-    $password=$_POST['V_upass'];
-    
-    $sql="call login('$uname', $password')limit 1";
-    
-    $result=mysql_query($sql);
-    
-    if(mysql_num_rows($result)==1){
-        echo " You Have Successfully Logged in";
-        exit();
-    }
-    else{
-        echo " You Have Entered Incorrect Password";
-        exit();
-    }
-        
-}
-?>
 <!-- Modal for the voters -->
 <div class="modal fade" id="votersModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -122,15 +105,16 @@ if(isset($_POST['V_uname'])){
         </button>
       </div>
 	  
-      <div class="modal-body" action="voters.html" method="post">
+      <div class="modal-body">
+	  <form method="post" action="v_login.php">
       
 	   <p style="text-align:center;"><img src="user.png" alt="user" class="userIcon" height="100px" width="150px"></p>
-       <label for="user"><h4>username: </h4></label>
-       <input type="text" name="V_uname" required/>
+       <label><h4>username: </h4></label>
+       <input type="text" id="V_uname" name="V_uname" required/>
        <br>
 	   
-       <label for="user"><h4>password: </h4></label>
-       <input type="password" name="V_upass" required/>
+       <label><h4>password: </h4></label>
+       <input type="password" id="V_upass" name="V_upass" required/>
        <br>
 	   <p><a href="create.html">Create an account?</a></p>
 	   
@@ -138,7 +122,9 @@ if(isset($_POST['V_uname'])){
 	  
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" value="submit">Login</button>
+        <button type="submit" class="btn btn-primary" name="V_login" value="submit">Login</button>
+		
+	  </form>
       </div>
     </div>
   </div>
@@ -156,22 +142,24 @@ if(isset($_POST['V_uname'])){
         </button>
       </div>
 	  
-      <div class="modal-body" action="connect.php" method="post">
+      <div class="modal-body">
+	  <form method="post" action="A_login.php">
       
 	   <p style="text-align:center;"><img src="admin.png" alt="user" class="userIcon" height="150px" width="150px" style="border-radius: 50%"></p>
-       <label for="user"><h4>username: </h4></label>
-       <input type="text" id="uname" name="username" required/>
+       <label><h4>username: </h4></label>
+       <input type="text" id="username" name="username" required/>
        <br>
 	   
-       <label for="user"><h4>password: </h4></label>
-       <input type="text" id="pword" name="password" required/>
+       <label><h4>password: </h4></label>
+       <input type="password" id="password" name="password" required/>
        <br>
-	   <p><a href="create.html">Create an account?</a></p>
-	   <button type="submit" value="submit">Login</button>
       </div>
 	  
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" value="submit" name="A_login">Login</button>
+		
+	  </form>
       </div>
     </div>
   </div>
